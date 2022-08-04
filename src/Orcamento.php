@@ -5,15 +5,16 @@ namespace DesignPatterns\Structural;
 use DesignPatterns\Structural\EstadosOrcamento\EmAprovacao;
 use DesignPatterns\Structural\EstadosOrcamento\EstadoOrcamento;
 
-class Orcamento
+class Orcamento implements Orcavel
 {
     public float $valor;
-    public int $quantidadeItens;
+    public array $itens;
     public EstadoOrcamento $estadoAtual;
 
     public function __construct()
     {
         $this->estadoAtual = new EmAprovacao();
+        $this->itens = [];
     }
 
     /**
@@ -37,5 +38,19 @@ class Orcamento
     public function finaliza()
     {
         $this->estadoAtual->finaliza($this);
+    }
+
+    public function addItem(Orcavel $item)
+    {
+        $this->itens[] = $item;
+    }
+
+    public function valor(): float
+    {
+        return array_reduce(
+            $this->itens,
+            fn (float $valorAcumulado, Orcavel $item) => $item->valor() + $valorAcumulado,
+            0
+        );
     }
 }
