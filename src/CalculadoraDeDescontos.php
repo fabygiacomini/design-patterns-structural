@@ -2,9 +2,9 @@
 
 namespace DesignPatterns\Structural;
 
-use DesignPatterns\Behavioral\Descontos\DescontoMaisDe500Reais;
-use DesignPatterns\Behavioral\Descontos\DescontoMaisDe5Itens;
-use DesignPatterns\Behavioral\Descontos\SemDesconto;
+use DesignPatterns\Structural\Descontos\DescontoMaisDe500Reais;
+use DesignPatterns\Structural\Descontos\DescontoMaisDe5Itens;
+use DesignPatterns\Structural\Descontos\SemDesconto;
 
 class CalculadoraDeDescontos
 {
@@ -17,6 +17,10 @@ class CalculadoraDeDescontos
             )
         );
 
-        return $cadeiaDeDescontos->calculaDesconto($orcamento);
+        $descontoCalculado = $cadeiaDeDescontos->calculaDesconto($orcamento);
+        $logDesconto = new LogDesconto();
+        $logDesconto->informar($descontoCalculado);
+
+        return $descontoCalculado;
     }
 }
