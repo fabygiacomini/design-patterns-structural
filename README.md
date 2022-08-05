@@ -6,3 +6,4 @@ Exercícios e anotações sobre os padrões de projeto do tipo *estrutural*:
 - Composite
 - Facade
 - Proxy
+- Flyweight
