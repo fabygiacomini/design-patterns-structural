@@ -5,3 +5,4 @@ Exercícios e anotações sobre os padrões de projeto do tipo *estrutural*:
 - Decorator
 - Composite
 - Facade
+- Proxy
